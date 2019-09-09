@@ -1,18 +1,19 @@
 #include <library.h>
-bool isBanka = false;
-task Banka()
+void Zahvat()
 {
-	while(true)
-		Start(D, !isBanka ? 100 : -100);
+	if(s1 < 10)
+	{
+		Start(D, -100);
+		delay(1000);
+		Start(D, 100);
+		delay(1000);
+	}
 }
 task main()
 {
-	startTask(Banka);
-	while(true)
-	{
-		isBanka = false;
-		delay(1000);
-		isBanka = true;
-		delay(1000);
-	}
+	Start(D, 100);
+	int speed = 50;
+	Move(C, 500, speed);
+	Move(BC, 100, speed);
+	Zahvat();
 }
