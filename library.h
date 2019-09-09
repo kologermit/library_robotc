@@ -1,13 +1,12 @@
 #define B motorB
 #define C motorC
-#define BC 927634
+int BC  = rand();
 #define A motorA
 #define D motorD
-int count_crossroad = 0;
 #define Start(a, b) {if (a == BC) {setMotorSpeed(B, b); setMotorSpeed(C, b);} else setMotorSpeed(a, b);}
 #define StopAll() Start(A, 0); Start(B, 0); Start(C, 0); Start(D, 0)
 #define Display displayBigStringAt
-#define Clear() eraseDisplay()
+#define Clear eraseDisplay
 #define s1 SensorValue[S1]
 #define s2 SensorValue[S2]
 #define s3 SensorValue[S3]
