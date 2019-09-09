@@ -13,16 +13,11 @@ int BC  = rand();
 #define s4 SensorValue[S4]
 #define Encoder getMotorEncoder
 #define Tone playTone
-#define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) < abs(degrees)) func; StopAll();}
+#define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func; StopAll();}
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
-		resetMotorEncoder(B); \
-		Start(B, speed); \
-		Start(C, speed); \
-		while(abs(Encoder(B)) <= abs(degrees)); \
-		Start(B, 0); \
-		Start(C, 0); \
+		MoveToFunc({Start(B, speed); Start(C, speed);}, degrees) \
 	} \
 	else \
 	{ \
