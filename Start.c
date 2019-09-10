@@ -12,10 +12,10 @@ void Zahvat()
 	{
 		Move(BC, 500, -100);
 		Start(D, -100);
-		delay(1000);
+		delay(500);
 		Move(BC, 800, 100);
 		Start(D, 100);
-		delay(1000);
+		delay(500);
 	}
 }
 const int speed = 50;
@@ -47,14 +47,96 @@ task main()
 {
 	Start(D, 100);
 	startTask(Kalibrovka);
-	Move(BC, 230, -speed);
+	Move(BC, 250, -speed);
 	Move(C, 950, -speed);
-	Move(BC, 480, speed);
 	isKalibrovka = false;
-	Zahvat();
 	Start(BC, speed);
 	while(!isLine(S4));
 	Move(BC, 50, speed);
+	for(int i = 0; i < 4; i++)
+	{
+		LINE();
+		Move(BC, 20, speed);
+		Zahvat();
+		Start(BC, speed);
+		while(!isLine(S4));
+		Move(BC, 50, speed);
+	}
+	MoveToFunc({Start(B, speed); Start(C, -speed);}, 450);
+	for(int i = 0; i < 1; i++)
+	{
+		LINE();
+		Move(BC, 20, speed);
+		Zahvat();
+		Start(BC, speed);
+		while(!isLine(S4));
+		Move(BC, 50, speed);
+	}
+	MoveToFunc({Start(B, speed); Start(C, -speed);}, 450);
+	for(int i = 0; i < 3; i++)
+	{
+		LINE();
+		Move(BC, 20, speed);
+		Zahvat();
+		Start(BC, speed);
+		while(!isLine(S4));
+		Move(BC, 50, speed);
+	}
+	LINE();
+	Start(BC, -speed);
+	while(!isLine(S4));
+	Start(BC, 0);
+	MoveToFunc({Start(B, speed); Start(C, -speed);}, 460);
+	while(isLine(S4))
+		if(!isLine(S2))
+	{
+		Start(B, speed);
+		Start(C, 0);
+	}
+	else
+	{
+		Start(B, 0);
+		Start(C, speed);
+	}
+	Move(BC, 400, speed);
+	while(!isLine(S4))
+		if(!isLine(S2))
+	{
+		Start(B, speed);
+		Start(C, 0);
+	}
+	else
+	{
+		Start(B, 0);
+		Start(C, speed);
+	}
+	Start(BC, 0);
+	Start(D, -100);
+	delay(500);
+	Move(BC, 2200, -speed);
+	Start(D, 100);
+	delay(500);
+	Move(C, 900, -speed);
+	for(int i = 0; i < 4; i++)
+	{
+		LINE();
+		Move(BC, 20, speed);
+		Zahvat();
+		Start(BC, speed);
+		while(!isLine(S4));
+		Move(BC, 50, speed);
+	}
+	MoveToFunc({Start(B, speed); Start(C, -speed);}, 450);
+	for(int i = 0; i < 1; i++)
+	{
+		LINE();
+		Move(BC, 20, speed);
+		Zahvat();
+		Start(BC, speed);
+		while(!isLine(S4));
+		Move(BC, 50, speed);
+	}
+	MoveToFunc({Start(B, speed); Start(C, -speed);}, 450);
 	for(int i = 0; i < 3; i++)
 	{
 		LINE();
