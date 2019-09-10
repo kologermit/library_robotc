@@ -1,15 +1,13 @@
 #include <library.h>
-task Black_Banka()
-{
-	Start(D, -100);
-	delay(1000);
-	Start(D, 100);
-	delay(1000);
-}
 void Zahvat()
 {
-	if(s1 < 10)
-		startTask(Black_Banka);
+	if((s1 <= 2))
+	{
+		Start(D, -100);
+		delay(500);
+		Start(D, 100);
+		delay(500);
+	}
 	else
 	{
 		Move(BC, 500, -100);
