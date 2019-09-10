@@ -19,6 +19,7 @@ int BC  = rand();
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
+		Start(BC, 0);\
 		MoveToFunc({Start(B, speed); Start(C, speed);}, degrees) \
 	} \
 	else \
@@ -35,5 +36,5 @@ bool isLine(int port){
 	static int Min[4] = {100, 100, 100, 100};
 	Max[port] = max(SensorValue[port], Max[port]);
 	Min[port] = min(SensorValue[port], Min[port]);
-	return (Min[port] + Max[port]) / 2 < SensorValue[port];
+	return !((Min[port] + Max[port]) / 2 < SensorValue[port]);
 }
