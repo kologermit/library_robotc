@@ -9,11 +9,17 @@ void Zahvat()
 		delay(1000);
 	}
 }
+bool isKalibrovka = true;
+task Kalibrovka()
+{
+	while(isKalibrovka)
+	{
+		isLine(S2);
+		isLine(S4);
+	}
+}
 task main()
 {
-	Start(D, 100);
-	int speed = 50;
-	Move(C, 500, speed);
-	Move(BC, 100, speed);
-	Zahvat();
+	startTask(Kalibrovka);
+
 }
