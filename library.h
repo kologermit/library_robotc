@@ -34,10 +34,6 @@ int BC  = rand();
 bool isLine(int port){
 	static int Max[4] = {0, 0, 0, 0};
 	static int Min[4] = {100, 100, 100, 100};
-	if(port == S4)
-		return s4 < 40 ? true : false;
-	if(port == S2)
-		return s2 < 40 ? true : false;
 	Max[port] = max(SensorValue[port], Max[port]);
 	Min[port] = min(SensorValue[port], Min[port]);
 	return !((Min[port] + Max[port]) / 2 < SensorValue[port]);
