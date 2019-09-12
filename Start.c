@@ -33,17 +33,15 @@ void LINE(int k1 = 1, int k2 = 1)
 {
 	k1 = k1 != -1 ? 0 : -1;
 	k2 = k2 != -1 ? 0 : -1;
-	Start((k2 != -1 ? C : B), speed);
-	while(!isLine(S2) && k1 != -1);
 	while(k1 == 0 ? isLine(S4) : !isLine(S4))
 		if(isLine(S2) + k2)
 	{
 		Start(B, speed);
-		Start(C, speed * 0.25);
+		Start(C, speed * 0.31);
 	}
 	else
 	{
-		Start(B, speed * 0.25);
+		Start(B, speed * 0.31);
 		Start(C, speed);
 	}
 	Start(BC, 0);
@@ -87,9 +85,7 @@ task main()
 		while(!isLine(S4));
 		Move(BC, 50, speed);
 	}
-	delay(5000);
 	LINE();
-	delay(5000);
 	Start(BC, -speed);
 	while(!isLine(S4));
 	Start(BC, 0);
@@ -98,7 +94,6 @@ task main()
 	Move(BC, 400, speed);
 	LINE(-1, -1);
 	Start(BC, 0);
-	delay(5000);
 	Start(D, -100);
 	delay(500);
 	Move(BC, 2200, -speed);
@@ -125,7 +120,6 @@ task main()
 		Move(BC, 50, speed);
 	}
 	MoveToFunc({Start(B, speed); Start(C, -speed);}, 450);
-	while(true);
 	for(int i = 0; i < 3; i++)
 	{
 		LINE();
@@ -140,18 +134,4 @@ task main()
 	while(!isLine(S4));
 	Start(BC, 0);
 	MoveToFunc({Start(B, speed); Start(C, -speed);}, 460);
-	for(int i = 0; i < 3; i++){
-		while(isLine(S4))
-			if(!isLine(S2))
-		{
-			Start(B, speed);
-			Start(C, 0);
-		}
-		else
-		{
-			Start(B, 0);
-			Start(C, speed);
-		}
-		Move(BC, 400, speed);
-	}
 }
