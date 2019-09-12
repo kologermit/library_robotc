@@ -100,6 +100,8 @@ task main()
 	Start(D, 100);
 	delay(500);
 	Move(C, 900, -speed);
+	Start(BC, speed);
+	while(!isLine(S4));
 	for(int i = 0; i < 4; i++)
 	{
 		LINE();
@@ -135,10 +137,14 @@ task main()
 	Start(BC, 0);
 	Move(BC, 50, speed);
 	MoveToFunc({Start(B, speed); Start(C, -speed);}, 460);
+	Start(D, -100);
 	for(int i = 0; i < 3; i++)
 	{
 		LINE(1, -1);
 		Move(BC, 315, speed);
 	}
-	LINE(-1, -1);
+	Move(BC, 420, speed);
+	Start(D, 100);
+	while(true);
+	//MoveToFunc({Start}, )
 }
