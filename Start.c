@@ -133,5 +133,12 @@ task main()
 	Start(BC, -speed);
 	while(!isLine(S4));
 	Start(BC, 0);
+	Move(BC, 50, speed);
 	MoveToFunc({Start(B, speed); Start(C, -speed);}, 460);
+	for(int i = 0; i < 3; i++)
+	{
+		LINE(1, -1);
+		Move(BC, 315, speed);
+	}
+	LINE(-1, -1);
 }
