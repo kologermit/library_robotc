@@ -38,3 +38,9 @@ bool isLine(int port){
 	Min[port] = min(SensorValue[port], Min[port]);
 	return !((Min[port] + Max[port]) / 2 < SensorValue[port]);
 }
+
+int file(char* b, char a = 'w'){
+	// 'w' = write
+	// 'r' = read
+ return a == 'w' ? fileOpenWrite(b) : fileOpenRead(b);
+}
