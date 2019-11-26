@@ -82,3 +82,22 @@ void fwrite(int fileDescriptor, float value){
 	fileWriteFloat(fileDescriptor, value);
 }
 
+void fwrite(char * path, long value){
+	int fileDescriptor = file(path, 'w');
+	fileWriteLong(fileDescriptor, value);
+}
+
+void fwrite(char * path, char value){
+	int fileDescriptor = file(path, 'w');
+	fileWriteChar(fileDescriptor, value);
+}
+
+void fwrite(char * path, short value){
+	int fileDescriptor = file(path, 'w');
+	fileWriteShort(fileDescriptor, value);
+}
+
+void fwrite(char * path, float value){
+	int fileDescriptor = file(path, 'w');
+	fileWriteFloat(fileDescriptor, value);
+}
