@@ -16,6 +16,7 @@ int BC  = rand();
 #define Encoder getMotorEncoder
 #define Tone playTone
 #define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func; StopAll();}
+
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
@@ -39,8 +40,45 @@ bool isLine(int port){
 	return !((Min[port] + Max[port]) / 2 < SensorValue[port]);
 }
 
-int file(char* b, char a = 'w'){
-	// 'w' = write
-	// 'r' = read
- return a == 'w' ? fileOpenWrite(b) : fileOpenRead(b);
+#define file(b, a) (a == 'w' ? fileOpenWrite(b) : fileOpenRead(b))
+
+long freadLong(int fileDescriptor){
+	long data;
+	fileReadLong(fileDescriptor, &data);
+	return data;
 }
+
+char freadChar(int fileDescriptor){
+	char data;
+	fileReadChar(fileDescriptor, &data);
+	return data;
+}
+
+float freadFloat(int fileDescriptor){
+	float data;
+	fileReadFloat(fileDescriptor, &data);
+	return data;
+}
+
+short freadShort(int fileDescriptor){
+	short data;
+	fileReadShort(fileDescriptor, &data);
+	return data;
+}
+
+void fwrite(int fileDescriptor, long value){
+	fileWriteLong(fileDescriptor, value);
+}
+
+void fwrite(int fileDescriptor, char value){
+	fileWriteChar(fileDescriptor, value);
+}
+
+void fwrite(int fileDescriptor, short value){
+	fileWriteShort(fileDescriptor, value);
+}
+
+void fwrite(int fileDescriptor, float value){
+	fileWriteFloat(fileDescriptor, value);
+}
+
