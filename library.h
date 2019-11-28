@@ -18,6 +18,7 @@ int BC = -1;
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define abs(a) ((a) < 0 ? -(a) : (a))
+#define sign(a) (!(a) ? 0 : abs(a) / (a))
 #define Encoder getMotorEncoder
 #define Tone playTone
 #define FOR(n) for(int i = 0; i < n; i++)
@@ -136,20 +137,6 @@ int count(long * arr, int size, long value){
 	FOR(size)
 	if(arr[i] == value) cn++;
 	return cn;
-}
-
-int binary_search(long * arr, int size, long value){
-	int l = 0, r = size, m;
-	while(l <= r){
-		m = (r + l) / 2;
-		if(arr[m] == value)
-			return m;
-		if(arr[m] > value)
-			r = m;
-		else
-			l = m + 1;
-	}
-	return npos;
 }
 
 enum COLOR{
