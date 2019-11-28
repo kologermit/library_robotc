@@ -21,7 +21,10 @@ int BC = -1;
 #define Encoder getMotorEncoder
 #define Tone playTone
 #define FOR(n) for(int i = 0; i < n; i++)
+#define elif else if
+#define npos -1
 #define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func; StopAll();}
+#define in_range(value, a, b) ((value) >= min(a, b) && (value) <= max(a, b))
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
@@ -121,15 +124,73 @@ void sort(long * arr, int size){
 	} while(flag);
 }
 
+int search(long * arr, int size, long value){
+	FOR(size)
+	if(arr[i] == value)
+		return i;
+	return npos;
+}
+
+int count(long * arr, int size, long value){
+	int cn = 0;
+	FOR(size)
+	if(arr[i] == value) cn++;
+	return cn;
+}
+
+int binary_search(long * arr, int size, long value){
+	int l = 0, r = size, m;
+	while(l <= r){
+		m = (r + l) / 2;
+		if(arr[m] == value)
+			return m;
+		if(arr[m] > value)
+			r = m;
+		else
+			l = m + 1;
+	}
+	return npos;
+}
+
 enum COLOR{
+	NONE,
 	BLACK,
 	WHITE,
 	GREEN,
 	RED,
 	BLUE,
-	YELLOW
+	YELLOW,
+	BROWN
+};
+
+COLOR HT_color(int value){
+	if(in_range(value, 3, 2))
+		return BLUE;
+
+	if(in_range(value, 4, 4))
+		return GREEN;
+
+	if(in_range(value, 7, 9))
+		return RED;
+
+	if(in_range(value, 5, 6))
+		return YELLOW;
+
+	if(in_range(value, 10, 17))
+		return WHITE;
+
+	if(in_range(value, 0, 0))
+		return BLACK;
+
+	return NONE;
 }
 
-COLOR HT_color(int port){
-	
-}
+#define COLOR_TO_STRING(a) (\
+(a) == YELLOW ? "YELLOW" :\
+(a) == BLUE ? "BLUE" :\
+(a) == BLACK ? "BLACK" :\
+(a) == WHITE ? "WHITE" :\
+(a) == GREEN ? "GREEN" :\
+(a) == RED ? "RED" :\
+"NONE"\
+)
