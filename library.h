@@ -4,8 +4,9 @@ int BC  = rand();
 #define A motorA
 #define D motorD
 #define Start(a, b) {if (a == BC) {setMotorSpeed(B, b); setMotorSpeed(C, b);} else setMotorSpeed(a, b);}
-#define StopAll() Start(A, 0); Start(B, 0); Start(C, 0); Start(D, 0)
-#define Display displayBigStringAt // y = 125; x = 0; Display(x, y, "", ...);
+#define StopAll() {Start(A, 0); Start(B, 0); Start(C, 0); Start(D, 0)}
+#define Display displayStringAt
+#define endl '\n'
 #define Clear eraseDisplay
 #define s1 SensorValue[S1]
 #define s2 SensorValue[S2]
@@ -13,10 +14,11 @@ int BC  = rand();
 #define s4 SensorValue[S4]
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
+#define abs(a) ((a) < 0 ? -(a) : (a))
 #define Encoder getMotorEncoder
 #define Tone playTone
+#define FOR(n) for(int i = 0; i < n; i++)
 #define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func; StopAll();}
-
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
@@ -100,4 +102,26 @@ void fwrite(char * path, short value){
 void fwrite(char * path, float value){
 	int fileDescriptor = file(path, 'w');
 	fileWriteFloat(fileDescriptor, value);
+}
+
+void printf(char * line);
+
+void printf(long value);
+
+void printf(char symbol);
+
+void printf(int size, long * arr);
+
+void sort(long * arr, int size){
+	bool flag;
+	do {
+		flag = false;
+		FOR(size - 1)
+		if(arr[i] > arr[i + 1]){
+			long temp = arr[i];
+			arr[i] = arr[i + 1];
+			arr[i + 1] = temp;
+			flag = true;
+		}
+	} while(flag);
 }
