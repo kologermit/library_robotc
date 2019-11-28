@@ -1,17 +1,20 @@
 #define B motorB
 #define C motorC
-int BC  = rand();
+int BC = -1;
 #define A motorA
 #define D motorD
 #define Start(a, b) {if (a == BC) {setMotorSpeed(B, b); setMotorSpeed(C, b);} else setMotorSpeed(a, b);}
 #define StopAll() {Start(A, 0); Start(B, 0); Start(C, 0); Start(D, 0)}
-#define Display displayStringAt
+#define Display displayString
 #define endl '\n'
+#define WT while(true);
 #define Clear eraseDisplay
 #define s1 SensorValue[S1]
 #define s2 SensorValue[S2]
 #define s3 SensorValue[S3]
 #define s4 SensorValue[S4]
+#define MAX_LINES_DISPLAY
+#define MAX_CHARACTERS_DISPLAY
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define abs(a) ((a) < 0 ? -(a) : (a))
@@ -104,14 +107,6 @@ void fwrite(char * path, float value){
 	fileWriteFloat(fileDescriptor, value);
 }
 
-void printf(char * line);
-
-void printf(long value);
-
-void printf(char symbol);
-
-void printf(int size, long * arr);
-
 void sort(long * arr, int size){
 	bool flag;
 	do {
@@ -124,4 +119,17 @@ void sort(long * arr, int size){
 			flag = true;
 		}
 	} while(flag);
+}
+
+enum COLOR{
+	BLACK,
+	WHITE,
+	GREEN,
+	RED,
+	BLUE,
+	YELLOW
+}
+
+COLOR HT_color(int port){
+	
 }
