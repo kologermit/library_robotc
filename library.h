@@ -21,16 +21,21 @@ int BC = -1;
 #define sign(a) (!(a) ? 0 : abs(a) / (a))
 #define Encoder getMotorEncoder
 #define Tone playTone
+<<<<<<< HEAD
+#define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func;}
+#define elif else if
+=======
 #define FOR(n) for(int i = 0; i < n; i++)
 #define elif else if
 #define npos -1
 #define MoveToFunc(func, degrees) {resetMotorEncoder(B); while(abs(Encoder(B)) <= abs(degrees)) func; StopAll();}
 #define in_range(value, a, b) ((value) >= min(a, b) && (value) <= max(a, b))
+>>>>>>> 1a1818d457480782f227ae35253b108b79798ccb
 #define Move(port, degrees, speed) { \
 	if(port == BC) \
 	{ \
 		Start(BC, 0);\
-		MoveToFunc({Start(B, speed); Start(C, speed);}, degrees) \
+		MoveToFunc({Start(B, speed); Start(C, speed);}, degrees); StopAll(); \
 	} \
 	else \
 	{ \
